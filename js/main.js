@@ -157,12 +157,17 @@ function union() {
  * zip(['fred', 'barney'], [30, 40], [true, false]); // → [['fred', 30, true], ['barney', 40, false]]
  */
 function zip() {
-    var i, j, transp = [];
+    var i, j, transp = [], max = 0;
+    for (i=0; i<arguments.length; i++) {
+    	if (arguments[0].length > max) {
+	    max = arguments[0].length;
+	}
+    }
     for (i=0; i<arguments[0].length; i++) {
         transp.push([]);
     }
     for (i=0; i<arguments.length; i++) {
-        for (j=0; j<arguments[i].length; j++) {
+        for (j=0; j<max; j++) {
             transp[j].push(arguments[i][j]);
         }
     }
@@ -206,5 +211,5 @@ console.log(
 
 console.log(
     "zip          ",
-    zip(['fred', 'barney'], [30, 40], [true, false])
+    zip(['fred', 'barney', 'vova'], [30, 40], [true, false, true])
 );
